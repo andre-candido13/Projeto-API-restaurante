@@ -1,5 +1,5 @@
-import restaurantRepository from "../repositories/restaurant-repository";
-import { conflictError } from "../errors/conflict-error";
+import restaurantRepository from "../repositories/restaurant-repository.js";
+import { conflictError } from "../errors/conflict-error.js";
 
 
 
@@ -16,9 +16,17 @@ async function CreateRestaurant (nome: string, foto: string, endereco: string): 
 
 }
 
+async function getRestaurant () {
+
+    const restaurant = await restaurantRepository.GetRestaurant()
+
+    return restaurant
+}
+
 
 const restauranteService = {
-    CreateRestaurant
+    CreateRestaurant,
+    getRestaurant
 }
 
 export default restauranteService;

@@ -1,11 +1,12 @@
-import { Router } from "express";
-import { createRestaurant } from "../controllers/restaurant-controller";
+import { Router} from "express";
+import { createRestaurant, getRestaurant } from "../controllers/restaurant-controller.js";
+
 
 
 const restaurantRouter = Router();
 
-restaurantRouter.post('/restaurant', createRestaurant);
+restaurantRouter.post('/rest', createRestaurant);
+restaurantRouter.get('/rest', getRestaurant)
 
 
-
-export default restaurantRouter;
+export { restaurantRouter }
