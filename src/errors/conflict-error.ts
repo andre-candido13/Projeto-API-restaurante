@@ -8,3 +8,12 @@ export function conflictError(): ApplicationError {
     message: 'Restaurante já existente',
   };
 }
+
+export function notFoundError(): ApplicationError {
+
+return {
+  name: 'NotFoundError',
+  message: 'Id não encontrado',
+}
+
+}

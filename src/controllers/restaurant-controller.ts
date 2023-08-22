@@ -31,5 +31,27 @@ export async function getRestaurant (req: Request, res: Response) {
     } catch (error) {
         res.status(httpStatus.BAD_REQUEST).send(error.message)
     }
+}
+
+
+export async function createWorkTime (req: Request, res: Response) {
+
+    const { restaurante_id} = req.body
+
+    const { dia_da_semana, horario_inicio, horario_fim } = req.body
+ 
+    try {
+
+        const horarioFuncionamento = restauranteService.createWorkTime(restaurante_id, dia_da_semana, horario_inicio, horario_fim)
+
+        return res.send(httpStatus.CREATED).send(horarioFuncionamento)
+
+        
+
+    } catch (error) {
+
+        res.status(httpStatus.BAD_REQUEST).send(error.message)
+
+    }
 
 }

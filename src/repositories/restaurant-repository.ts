@@ -26,12 +26,29 @@ async function GetRestaurant () {
 
 }
 
+async function createWorkTime (restaurante_id: number, dia_da_semana: string, horario_inicio: string, horario_fim: string) {
+
+    const time = await db.query('INSERT INTO horariosfuncionamento ("restaurante_id", "dia_da_semana", "horario_inicio", "horario_fim") VALUES ($1, $2, $3, $4)',
+    [restaurante_id, dia_da_semana, horario_inicio, horario_fim])
+
+    return time.rows
+
+}
+
+async function getWorkTimeById (restaurante_id: number) {
+
+    const horario = await db.query('SELECT * FROM horariosfuncionamento WHERE restaurante_id=$1',[restaurante_id])
+    return horario.rows[0]
+}
+
 
 
 const restaurantRepository = {
 CheckRestaurant,
 CreateRestaurant,
-GetRestaurant
+GetRestaurant,
+createWorkTime,
+getWorkTimeById
 
 }
 
