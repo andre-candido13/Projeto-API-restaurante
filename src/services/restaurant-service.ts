@@ -25,23 +25,31 @@ async function getRestaurant () {
 
 async function createWorkTime (restaurante_id: number, dia_da_semana: string, horario_inicio: string, horario_fim: string) {
 
-    const isThereId = restaurantRepository.getWorkTimeById(restaurante_id)
+    const isThereId = await restaurantRepository.getWorkTimeById(restaurante_id)
     
-    if (!isThereId) throw notFoundError()
+    if (isThereId.rows.length === 0) throw notFoundError()
     
     
-        const restaurantTime = restaurantRepository.createWorkTime(restaurante_id, dia_da_semana, horario_inicio, horario_fim)
+        const restaurantTime = await restaurantRepository.createWorkTime(restaurante_id, dia_da_semana, horario_inicio, horario_fim)
 
         return restaurantTime
 
  
 }
 
+async function getWorkTime() {
+
+    const workTime = restaurantRepository.getWorkTime()
+
+    return workTime
+}
+
 
 const restauranteService = {
     CreateRestaurant,
     getRestaurant,
-    createWorkTime
+    createWorkTime,
+    getWorkTime
 }
 
 export default restauranteService;

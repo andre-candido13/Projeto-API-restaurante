@@ -1,6 +1,7 @@
 import { Response, Request } from "express";
 import httpStatus from "http-status";
 import restauranteService from "../services/restaurant-service.js";
+import { get } from "http";
 
 
 export async function createRestaurant (req: Request, res: Response) {
@@ -55,3 +56,15 @@ export async function createWorkTime (req: Request, res: Response) {
     }
 
 }
+    export async function getWorkTime (req: Request, res: Response) {
+
+        try {
+
+            const getWorkTime = await restauranteService.getWorkTime()
+
+            return res.send(getWorkTime)
+
+        } catch (error) {
+            res.status(httpStatus.BAD_REQUEST).send(error.message)
+        }
+    }

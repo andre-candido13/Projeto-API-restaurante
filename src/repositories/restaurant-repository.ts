@@ -41,6 +41,13 @@ async function getWorkTimeById (restaurante_id: number) {
     return horario.rows[0]
 }
 
+async function getWorkTime() {
+
+    const workTime = await db.query('SELECT * FROM horariosfuncionamento')
+
+    return workTime.rows
+}
+
 
 
 const restaurantRepository = {
@@ -48,7 +55,8 @@ CheckRestaurant,
 CreateRestaurant,
 GetRestaurant,
 createWorkTime,
-getWorkTimeById
+getWorkTimeById,
+getWorkTime
 
 }
 
